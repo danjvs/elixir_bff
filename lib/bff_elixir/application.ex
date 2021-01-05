@@ -12,7 +12,7 @@ defmodule BffElixir.Application do
       BffElixirWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: BffElixir.PubSub},
-      # Start the Endpoint (http/h,ttps)
+      # Start the Endpoint (http/https)
       BffElixirWeb.Endpoint,
       # Start a worker by calling: BffElixir.Worker.start_link(arg)
       # {BffElixir.Worker, arg}
