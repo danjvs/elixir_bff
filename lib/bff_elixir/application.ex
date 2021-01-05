@@ -6,15 +6,17 @@ defmodule BffElixir.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec
     children = [
       # Start the Telemetry supervisor
       BffElixirWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: BffElixir.PubSub},
-      # Start the Endpoint (http/https)
-      BffElixirWeb.Endpoint
+      # Start the Endpoint (http/h,ttps)
+      BffElixirWeb.Endpoint,
       # Start a worker by calling: BffElixir.Worker.start_link(arg)
       # {BffElixir.Worker, arg}
+      worker(Mongo, [[name: :mongo, url: "mongodb://localhost:27017/dan", pool_size: 10]])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
